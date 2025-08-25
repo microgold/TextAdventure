@@ -87,7 +87,8 @@ class Game:
 
             "L02": {"name":"ALLEY MOUTH (Sixth Street)",
                     "desc":"Neon roar and music thump. A POSTER for the Auric Gallery, a bent PAPERCLIP, and a TAROT "
-                           "COIN wedged in a curb crack. A STORM DRAIN whispers under water. A NEWSSTAND creaks.",
+                           "COIN wedged in a curb crack."
+                           "A STORM DRAIN whispers under water. A NEWSSTAND creaks.",
                     "exits":{"west":"L01","east":"L04","south":"L05"},
                     "features":["STORM_DRAIN","NEWSSTAND","CROW_STENCIL"],
                     "items":["POSTER","PAPERCLIP","TAROT_COIN"]},
@@ -529,6 +530,8 @@ class Game:
             self.cmd_tune_antenna()
         elif verb == "map":
             self.cmd_map()
+        elif verb == "help":
+            self.cmd_help()
         elif verb == "hint":
             self.cmd_hint()
         elif verb == "save":
@@ -1193,6 +1196,20 @@ class Game:
         self.output("Visited locations:")
         for loc in seen_locations:
             self.output(f"- {loc}")
+
+    def cmd_help(self):
+        """Show available commands"""
+        help_text = """COMMANDS:
+Movement: GO <direction> (N/S/E/W/U/D/IN/OUT)
+Items: TAKE <item>, DROP <item>, USE <item> [ON <target>], COMBINE <A> WITH <B>
+Looking: LOOK, EXAMINE <thing>, INVENTORY/I, READ <thing>
+People: TALK <person> [ABOUT <topic>], GIVE <item> TO <person>
+Actions: OPEN/CLOSE <thing>, PUSH <thing>, LISTEN, SMELL, WAIT/Z
+Vampire: SENSE, MESMERIZE <person>, BITE <target>
+Special: ENTER CODE <####>, TRACE SIGIL, CRAFT COUNTER-INK, TUNE ANTENNA
+         INSERT TOKEN <WARD/FEATHER/SHADOW>
+Game: STATS, MAP, HINT, SAVE, LOAD, QUIT"""
+        self.output(help_text)            
 
     def cmd_hint(self):
         """Show contextual hints"""
