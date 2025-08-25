@@ -60,7 +60,7 @@ with col1:
     output_container = st.container()
     with output_container:
         for output in st.session_state.game_output:
-            st.text(output)
+            st.markdown(f'<div style="white-space: pre-wrap; word-break: break-word;">{output}</div>', unsafe_allow_html=True)
 
     # Command input
     st.subheader("Enter Command")
