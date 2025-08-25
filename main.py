@@ -439,7 +439,9 @@ class Game:
         return True
 
     def real_target(self, loc_id):
-        return loc_id.split("_")[0]
+        if loc_id.endswith("_locked") or loc_id.endswith("_req"):
+            return loc_id.rsplit("_",1)[0]
+        return loc_id
 
     def do_go(self, dirn):
         L = self.world[self.s.location]
