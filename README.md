@@ -49,13 +49,14 @@ main.py
 
 Open a terminal in the same folder and run:
 
+```sh
 python3 main.py
-
+```
 
 Type your commands at the prompt (>) and
 see where the night takes you.
 
-### Running Shadow Circuit in the browser
+## Running Shadow Circuit in the browser
 
 Alternatively, if you don't want to run from the command line, you can run in the browser.
 
@@ -67,6 +68,7 @@ Then, from your project folder, install Streamlit:
 
 ```bash
 pip install streamlit
+```
 
 (If you don’t already have pip, install it first with your Python distribution.)
 
