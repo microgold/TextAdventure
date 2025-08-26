@@ -764,6 +764,10 @@ class Game:
             self.use_hot_mug(target)
         elif item_key == "FISHING_GEAR" and target and "drain" in target:
             self.use_fishing_gear()
+        elif item_key == "KEY_TAG" and target and ("magnetic reader" in target or "magnetic strip" in target or "case" in target):
+            self.use_case_access(item_key)
+        elif item_key == "MAGNET_CARD_hidden" and target and ("magnetic reader" in target or "magnetic strip" in target or "case" in target):
+            self.use_case_access(item_key)
         elif item_key == "SILVERED_THREAD" and target and "gasket" in target:
             self.use_thread_with_dog()
         elif item_key == "WIRE_CUTTER" and target and ("chain" in target or "gate" in target):
@@ -817,6 +821,30 @@ class Game:
             self.items["WARD_CHALK"]["loc"] = "inv"
         else:
             self.output("There's nowhere to fish here.")
+
+    def use_case_access(self, item_key):
+        """Use magnetic card or key-tag on glass case"""
+        if self.s.location != "L09":
+            self.output("There's no case here to unlock.")
+            return
+
+        if self.s.f.get("case_unlocked", False):
+            self.output("The case is already unlocked.")
+            return
+
+        if item_key == "MAGNET_CARD_hidden":
+            self.output(
+                "You swipe the magnetic card through the reader. BEEP! The glass case unlocks.")
+        elif item_key == "KEY_TAG":
+            self.output(
+                "You press the key-tag to the magnetic reader. CLICK! The security system disengages.")
+
+        # Unlock the items
+        self.items["BLUEPRINT"]["locked"] = False
+        self.items["LENS_ARRAY_CASE"]["locked"] = False
+        self.s.f["case_unlocked"] = True
+        self.output(
+            "The glass case is now open. You can take the blueprint and lens array.")
 
     def use_thread_with_dog(self):
         """Use silvered thread with Gasket"""
