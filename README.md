@@ -55,6 +55,28 @@ python3 main.py
 Type your commands at the prompt (>) and
 see where the night takes you.
 
+### Running Shadow Circuit in the browser
+
+Alternatively, if you don't want to run from the command line, you can run in the browser.
+
+The web version uses **Streamlit** to provide a browser-based interface.
+
+### 1. Install dependencies
+Make sure you have Python 3.9+ installed.  
+Then, from your project folder, install Streamlit:
+
+```bash
+pip install streamlit
+
+(If you don’t already have pip, install it first with your Python distribution.)
+
+2. Run the app
+From the project folder
+
+```sh
+ streamlit run app.py
+```
+
 💡 Hint
 
 If you get stuck, remember:
